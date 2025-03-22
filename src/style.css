@@ -1,4 +1,6 @@
 @import "primeicons/primeicons.css";
+@import "tailwindcss";
+@import "tailwindcss-primeui";
 
 :root {
   font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
