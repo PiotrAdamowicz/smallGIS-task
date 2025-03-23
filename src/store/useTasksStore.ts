@@ -1,19 +1,7 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
-
-enum CompletedTask {
-  done,
-  notDone,
-  inProgress
-}
-
-interface Task {
-  id: number;
-  title: string;
-  created: Date;
-  description: string;
-  completed: CompletedTask;
-}
+import type { Task } from "../types/tasks";
+import { CompletedTask } from "../types/enums";
 
 export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref<Task[]>([
