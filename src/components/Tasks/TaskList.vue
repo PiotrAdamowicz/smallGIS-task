@@ -5,7 +5,7 @@ import { useTasksStore } from "../../store/useTasksStore.ts";
 const store = useTasksStore();
 </script>
 <template>
-  <main class="px-8 pb-2">
+  <main class="px-4 pb-2">
     <ul>
       <Task v-for="task in store.tasks" :task :key="task.id" />
     </ul>

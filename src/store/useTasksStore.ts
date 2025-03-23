@@ -6,26 +6,34 @@ import { CompletedTask } from "../types/enums";
 export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref<Task[]>([
     {
-      id: 1,
+      id: "1",
       title: "Task 1",
       created: new Date(),
       description: "This is task 1",
       completed: CompletedTask.notDone
     },
     {
-      id: 2,
+      id: "2",
       title: "Task 2",
       created: new Date(),
       description: "This is task 2",
       completed: CompletedTask.inProgress
     },
     {
-      id: 3,
+      id: "3",
       title: "Task 3",
       created: new Date(),
       description: "This is task 3",
       completed: CompletedTask.done
     }
   ]);
-  return { tasks };
+  const sortTasks = () => {};
+  const addTask = (task: Task) => {
+    tasks.value.push(task);
+  };
+  const removeTask = (id: number) => {
+    const index = tasks.value.findIndex((task) => task.id === id);
+    tasks.value.splice(index, 1);
+  };
+  return { tasks, addTask, sortTasks, removeTask };
 });
