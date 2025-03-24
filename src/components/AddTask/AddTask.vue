@@ -1,6 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import TaskForm from "./TaskForm.vue";
+import TaskForm from "../TaskForm.vue";
 import { CompletedTask } from "../../types/enums";
 import { uid } from "../../utils/uid";
 import type { Task } from "../../types/tasks";
@@ -43,7 +43,7 @@ const addTask = () => {
           severity="success"
           label="Save"
           raised
-          class="font-bold my-2"
+          class="font-bold"
         />
       </template>
     </Dialog>

@@ -13,18 +13,19 @@ export const useTasksStore = defineStore("tasks", () => {
       completed: CompletedTask.notDone
     },
     {
+      id: "3",
+      title: "Task 3",
+      created: new Date(),
+      description:
+        "This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 ",
+      completed: CompletedTask.done
+    },
+    {
       id: "2",
       title: "Task 2",
       created: new Date(),
       description: "This is task 2",
       completed: CompletedTask.inProgress
-    },
-    {
-      id: "3",
-      title: "Task 3",
-      created: new Date(),
-      description: "This is task 3",
-      completed: CompletedTask.done
     }
   ]);
   const sortTasks = () => {};

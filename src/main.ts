@@ -8,6 +8,7 @@ import Button from "primevue/button";
 import Dialog from "primevue/dialog";
 import InputText from "primevue/inputtext";
 import Textarea from "primevue/textarea";
+import Card from "primevue/card";
 
 const primeVueOptions = {
   theme: {
@@ -25,4 +26,5 @@ app.component("Button", Button);
 app.component("Dialog", Dialog);
 app.component("InputText", InputText);
 app.component("Textarea", Textarea);
+app.component("Card", Card);
 app.mount("#app");
