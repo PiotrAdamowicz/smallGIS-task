@@ -1,11 +1,16 @@
 <script setup lang="ts">
 import { ref } from "vue";
 import TaskForm from "../TaskForm.vue";
+import { useDateFormat } from "@vueuse/core";
 import type { Task } from "../../types/tasks";
 
 const props = defineProps<{ task: Task }>();
 
 const visible = ref(false);
+const formattedCreationDate = useDateFormat(
+  props.task.created,
+  "HH:mm:ss DD-MM-YYYY"
+);
 
 const showTask = () => {
   visible.value = true;
@@ -17,7 +22,12 @@ const closeTask = () => {
 
 <template>
   <Card @click.capture="showTask" :class="{ 'max-h-24': !visible }">
-    <template v-if="!visible" #title>{{ props.task.title }}</template>
+    <template v-if="!visible" #title>
+      <span class="flex gap-2 justify-between">
+        <p>{{ props.task.title }}</p>
+        <p class="text-sm">{{ formattedCreationDate }}</p>
+      </span>
+    </template>
     <template v-else #title>
       <div class="flex gap-2 justify-between">
         <Button
@@ -50,8 +60,3 @@ const closeTask = () => {
     </template>
   </Card>
 </template>
-<style scoped>
-/* .p-card {
-  overflow: clip;
-} */
-</style>

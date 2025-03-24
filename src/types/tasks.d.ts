@@ -4,7 +4,7 @@ import { CompletedTask } from "./extractRuntimeEmits.ts";
 export interface Task {
   id: string;
   title: string;
-  created: Date;
+  created?: Date | null;
   description: string;
   completed: CompletedTask;
 }

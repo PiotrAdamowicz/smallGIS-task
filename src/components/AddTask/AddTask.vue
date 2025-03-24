@@ -12,12 +12,13 @@ const visible = ref(false);
 const task = {
   id: uid(),
   title: "",
-  created: new Date(),
+  created: null,
   description: "",
   completed: CompletedTask.notDone
 };
 const initalState = ref<Task>(task);
 const addTask = () => {
+  initalState.value.created = new Date();
   store.addTask(initalState.value);
   visible.value = false;
 };
@@ -28,7 +29,7 @@ const addTask = () => {
     <Dialog
       v-model:visible="visible"
       :draggable="false"
-      position="right"
+      position="left"
       closeIcon="pi pi-arrow-left"
       modal
       :style="{ width: '100vw', height: '100vh' }"
