@@ -4,7 +4,7 @@ import { describe, beforeEach, it, expect } from "vitest";
 import { CompletedTask } from "../src/types/enums";
 
 const newTask = {
-  id: 4,
+  id: "4",
   title: "Task 4",
   created: new Date(),
   description: "This is task 4",
