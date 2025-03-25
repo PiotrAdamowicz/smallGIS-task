@@ -1,6 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import TaskForm from "../TaskForm.vue";
+import TaskStatus from "../TaskStatus.vue";
 import { uid } from "../../utils/uid";
 import type { Task } from "../../types/tasks";
 import { useTasksStore } from "../../store/useTasksStore";
@@ -37,6 +38,10 @@ const addTask = () => {
         v-model:title="initalState.title"
         v-model:description="initalState.description"
       />
+      <span class="inline-flex justify-between w-full px-2 py-4">
+        <TaskStatus :completed="initalState.completed" label="Status: " />
+        <ToggleSwitch v-model="initalState.completed" class="" />
+      </span>
       <template #footer>
         <Button
           @click="addTask"

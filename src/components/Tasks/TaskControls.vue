@@ -2,7 +2,7 @@
 import { useDateFormat } from "@vueuse/core";
 import { computed } from "vue";
 import { useTasksStore } from "../../store/useTasksStore";
-import TaskStatus from "./TaskStatus.vue";
+import TaskStatus from "../TaskStatus.vue";
 
 const { title, created, id } = defineProps<{
   title: string;
@@ -19,13 +19,18 @@ const removeTask = () => {
   visible.value = false;
   store.removeTask(id);
 };
+const toggleTask = () => {
+  if (!completed.value) {
+    visible.value = !visible.value;
+  }
+};
 </script>
 
 <template>
   <span class="grid grid-cols-4 grid-rows-2 gap-x-2 gap-y-1">
     <span class="flex gap-2 transition col-span-2">
       <Button
-        @click="visible = !visible"
+        @click="toggleTask"
         severity="secondary"
         variant="text"
         class="font-bold w-full flex-row !justify-start"
@@ -45,8 +50,11 @@ const removeTask = () => {
       class="font-bold col-start-4"
       variant="text"
     />
-    <ToggleSwitch v-model="completed" class="col-start-5 col-span-1" />
-    <p class="text-sm row-start-2 col-span-2 mx-2 px-1">
+    <ToggleSwitch
+      v-model="completed"
+      class="col-start-5 col-span-1 justify-self-end"
+    />
+    <p class="text-sm row-start-2 col-span-3 mx-2 px-1">
       {{ formattedCreationDate }}
     </p>
     <TaskStatus :completed />
