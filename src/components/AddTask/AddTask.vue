@@ -12,7 +12,7 @@ const visible = ref(false);
 const task = {
   id: uid(),
   title: "",
-  created: undefined,
+  created: new Date(),
   description: "",
   completed: false
 };
