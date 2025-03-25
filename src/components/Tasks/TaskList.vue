@@ -8,9 +8,7 @@ const { showNotDone } = defineProps<{
 }>();
 const store = useTasksStore();
 
-const tasks = computed(() => {
-  return showNotDone ? store.getNotDone : store.getAllTasks;
-});
+const tasks = computed(() => store.getFilteredTasks(showNotDone));
 </script>
 <template>
   <main class="my-4 px-4 pb-2 flex flex-col gap-2 flex-grow">
