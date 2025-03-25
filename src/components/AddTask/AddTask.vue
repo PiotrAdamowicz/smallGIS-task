@@ -1,7 +1,6 @@
 <script lang="ts" setup>
 import { ref } from "vue";
 import TaskForm from "../TaskForm.vue";
-import { CompletedTask } from "../../types/enums";
 import { uid } from "../../utils/uid";
 import type { Task } from "../../types/tasks";
 import { useTasksStore } from "../../store/useTasksStore";
@@ -12,9 +11,9 @@ const visible = ref(false);
 const task = {
   id: uid(),
   title: "",
-  created: null,
+  created: undefined,
   description: "",
-  completed: CompletedTask.notDone
+  completed: false
 };
 const initalState = ref<Task>(task);
 const addTask = () => {

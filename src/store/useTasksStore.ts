@@ -1,7 +1,6 @@
 import { defineStore } from "pinia";
 import { ref } from "vue";
 import type { Task } from "../types/tasks";
-import { CompletedTask } from "../types/enums";
 
 export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref<Task[]>([
@@ -10,7 +9,7 @@ export const useTasksStore = defineStore("tasks", () => {
       title: "Task 1",
       created: new Date(),
       description: "This is task 1",
-      completed: CompletedTask.notDone
+      completed: false
     },
     {
       id: "3",
@@ -18,14 +17,14 @@ export const useTasksStore = defineStore("tasks", () => {
       created: new Date(),
       description:
         "This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 This is task 3 ",
-      completed: CompletedTask.done
+      completed: false
     },
     {
       id: "2",
       title: "Task 2",
       created: new Date(),
       description: "This is task 2",
-      completed: CompletedTask.inProgress
+      completed: true
     }
   ]);
   const sortTasks = () => {};
