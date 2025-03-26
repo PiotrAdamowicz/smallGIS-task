@@ -3,7 +3,6 @@ import { ref, watch } from "vue";
 import TaskForm from "../TaskForm.vue";
 import TaskStatus from "../TaskStatus.vue";
 import { uid } from "../../utils/uid";
-import type { Task } from "../../types/tasks";
 import { useTasksStore } from "../../store/useTasksStore";
 
 const store = useTasksStore();
@@ -15,15 +14,6 @@ const validationError = "Title must not be empty";
 const title = ref("");
 const description = ref("");
 const completed = ref(false);
-const taskId = ref<Date | "">("");
-
-// const task = {
-//   id: uid(),
-//   title: "",
-//   created: new Date(),
-//   description: "",
-//   completed: false
-// };
 
 const addTask = () => {
   if (title.value.length <= 0) {
