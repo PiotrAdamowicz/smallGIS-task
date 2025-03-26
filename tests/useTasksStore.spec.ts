@@ -5,13 +5,13 @@ import { uid } from "../src/utils/uid.ts";
 import { searchByQuery } from "../src/helpers/searchByQuery";
 import { sortByDate } from "../src/helpers/sortTasks";
 
-const newTask = {
+const newTask = () => ({
   id: uid(),
   title: "Task " + Math.random(),
   created: new Date(),
   description: "This is test task",
   completed: false
-};
+});
 
 describe("Use Tasks Store", () => {
   beforeEach(() => {
@@ -72,14 +72,16 @@ describe("Use Tasks Store", () => {
     const FILTERED_TASKS = store.getFilteredTasks(false);
     expect(FILTERED_TASKS).toHaveLength(10);
   });
-  it("Add task", () => {
+  it("Add task with unique ID", () => {
     const store = useTasksStore();
     const LENGTH = store.tasks.length;
     const EXPECTED = store.tasks.length + 1;
 
     expect(store.tasks).toHaveLength(LENGTH);
-    store.addTask(newTask);
+    store.addTask(newTask());
     expect(store.tasks).toHaveLength(EXPECTED);
+    store.addTask(newTask());
+    expect(store.tasks[0].id).not.toEqual(store.tasks[1].id);
   });
 
   it("Remove task", () => {
