@@ -5,7 +5,7 @@ const store = useTasksStore();
 </script>
 
 <template>
-  <div class="w-full px-2 pb-2">
+  <div class="w-full pb-4">
     <InputText
       type="text"
       placeholder="Search by title/description"

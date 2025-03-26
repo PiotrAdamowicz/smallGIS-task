@@ -16,6 +16,6 @@ const description = defineModel<string>("description");
     size="large"
     placeholder="Description"
     rows="12"
-    class="w-full"
+    class="w-full max-h-3/4"
   />
 </template>

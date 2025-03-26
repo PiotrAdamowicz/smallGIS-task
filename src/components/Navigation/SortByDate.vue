@@ -7,11 +7,15 @@ let sortAscending = computed(() => store.sortAscending);
 </script>
 
 <template>
-  <div class="inline-flex justify-between w-full px-4 pt-2">
-    <p>Sort by date:</p>
-    <Button @click="store.toggleSort()" severity="secondary">
-      <i v-if="sortAscending" class="pi pi-plus" />
-      <i v-else class="pi pi-minus" />
-    </Button>
-  </div>
+  <!-- <div class="inline-flex justify-between px-4 pt-2"> -->
+  <Button
+    @click="store.toggleSort()"
+    severity="secondary"
+    class="w-full sm:w-1/3"
+  >
+    <p class="">Sort by date:</p>
+    <i v-if="sortAscending" class="pi pi-arrow-up" />
+    <i v-else class="pi pi-arrow-down" />
+  </Button>
+  <!-- </div> -->
 </template>

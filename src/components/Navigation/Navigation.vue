@@ -6,10 +6,12 @@ import DarkModeToggle from "./DarkModeToggle.vue";
 </script>
 
 <template>
-  <nav class="m-4">
+  <nav class="mx-4 mb-2 mt-4">
     <Search />
-    <SortByDate />
-    <FilterByStatus />
-    <DarkModeToggle />
+    <div class="w-full flex flex-col sm:flex-row gap-x-3 gap-y-2">
+      <SortByDate />
+      <FilterByStatus />
+      <DarkModeToggle />
+    </div>
   </nav>
 </template>

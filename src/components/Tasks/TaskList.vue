@@ -14,7 +14,7 @@ const tasks = computed(() => store.getFilteredTasks);
     enterFromClass="opacity-0 scale-0 "
     leaveToClass="-translate-x-full"
     tag="main"
-    class="my-4 px-4 pb-2 flex flex-col gap-2 flex-grow transition-opacity"
+    class="my-2 px-4 pb-2 flex flex-col gap-2 flex-grow transition-opacity"
   >
     <Task v-for="task in tasks" :task :key="task.id" />
   </TransitionGroup>
