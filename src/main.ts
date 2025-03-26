@@ -17,7 +17,10 @@ import AccordionContent from "primevue/accordioncontent";
 
 const primeVueOptions = {
   theme: {
-    preset: Aura
+    preset: Aura,
+    options: {
+      darkModeSelector: ".dark"
+    }
   },
   ripple: true
 };

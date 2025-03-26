@@ -28,7 +28,7 @@ const toggleTask = () => {
 
 <template>
   <span class="grid grid-cols-4 grid-rows-2 gap-x-2 gap-y-1">
-    <span class="flex gap-2 transition col-span-2">
+    <span class="flex gap-2 transition col-span-3">
       <Button
         @click="toggleTask"
         severity="secondary"
@@ -38,7 +38,7 @@ const toggleTask = () => {
         <span class="text-xl" :class="{ 'line-through': completed }">
           {{ title }}
         </span>
-        <i v-if="visible" class="pi pi-times mx-2" />
+        <i v-if="visible" class="pi pi-check text-green-500 mx-2" />
         <i v-else="visible" class="pi pi-pencil mx-2 text-green-500" />
       </Button>
     </span>
