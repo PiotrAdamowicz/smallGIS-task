@@ -59,19 +59,19 @@ describe("Use Tasks Store", () => {
     expect(SORTED_TASK_DATE).toEqual(new Date("2025-03-03"));
   });
 
-  it("Filter tasks by 'Not Done' status", () => {
+  it("Toggle filtering by status state", () => {
     const store = useTasksStore();
+    const CURRENT = store.showDoneTasks;
+    const EXPECTED = !store.showDoneTasks;
 
-    const FILTERED_TASKS = store.getFilteredTasks(true);
-    expect(FILTERED_TASKS).toHaveLength(8);
+    expect(store.showDoneTasks).toBe(CURRENT);
+    expect(store.getFilteredTasks).toHaveLength(10);
+
+    store.toggleDoneTasks();
+    expect(store.showDoneTasks).toBe(EXPECTED);
+    expect(store.getFilteredTasks).toHaveLength(8);
   });
 
-  it("Filter tasks by 'Done' status", () => {
-    const store = useTasksStore();
-
-    const FILTERED_TASKS = store.getFilteredTasks(false);
-    expect(FILTERED_TASKS).toHaveLength(10);
-  });
   it("Add task with unique ID", () => {
     const store = useTasksStore();
     const LENGTH = store.tasks.length;
