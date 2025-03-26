@@ -10,7 +10,7 @@ const store = useTasksStore();
       type="text"
       placeholder="Search by title/description"
       v-model="store.searchQuery"
-      class="w-full"
+      class="w-full xl:!text-4xl"
     />
   </div>
 </template>

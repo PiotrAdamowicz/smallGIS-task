@@ -8,15 +8,15 @@ const showDoneTasks = computed(() => store.showDoneTasks);
 </script>
 
 <template>
-  <!-- <div class="inline-flex justify-between px-4 pt-2"> -->
   <Button
     @click="store.toggleDoneTasks"
     severity="secondary"
     class="w-full sm:w-1/3"
   >
-    <span class="">Show:</span>
-    <span v-if="showDoneTasks" class="text-blue-400 font-bold"> To do </span>
-    <span v-else class="font-bold">All </span>
+    <span class="xl:text-2xl">Show:</span>
+    <span v-if="showDoneTasks" class="text-blue-400 font-bold xl:text-2xl">
+      To do
+    </span>
+    <span v-else class="font-bold xl:text-2xl">All </span>
   </Button>
-  <!-- </div> -->
 </template>

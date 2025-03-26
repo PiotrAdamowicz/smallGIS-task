@@ -38,11 +38,11 @@ const addTask = () => {
   title.value = "";
   description.value = "";
   completed.value = false;
+  showError.value = false;
 };
 watch(
   () => title.value,
   () => {
-    console.log("change");
     if (title.value.length > 0) {
       showError.value = false;
     }
@@ -51,14 +51,15 @@ watch(
 </script>
 
 <template>
-  <div class="fixed bottom-0 right-0 m-4">
+  <div class="sticky bottom-0 inset-x-full w-fit m-4">
     <Dialog
       v-model:visible="visible"
       :draggable="false"
       position="left"
-      closeIcon="pi pi-arrow-left"
+      closeIcon="pi pi-arrow-left xl:!text-3xl"
       modal
-      :style="{ width: '100vw', height: '100vh' }"
+      class="mx-auto w-full xl:w-3/5 xl:container"
+      pt:mask="!justify-center"
     >
       <TaskForm v-model:title="title" v-model:description="description" />
       <span class="inline-flex justify-between w-full px-2 py-4">
@@ -74,13 +75,13 @@ watch(
           severity="success"
           label="Save"
           raised
-          class="font-bold"
+          class="font-bold xl:!text-2xl"
         />
       </template>
     </Dialog>
     <Button
       @click="visible = true"
-      icon="pi pi-plus"
+      icon="pi pi-plus xl:!text-4xl"
       rounded
       aria-label="Filter"
       severity="success"
@@ -90,3 +91,10 @@ watch(
     />
   </div>
 </template>
+<style scoped>
+@media (min-width: 1280px) {
+  :deep(.p-button-lg.p-button-icon-only.p-button-rounded) {
+    --p-button-lg-icon-only-width: 5rem;
+  }
+}
+</style>
