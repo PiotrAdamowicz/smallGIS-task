@@ -9,6 +9,8 @@ import { useTasksStore } from "../../store/useTasksStore";
 const store = useTasksStore();
 const visible = ref(false);
 
+//TODO: validation for empty title
+
 const task = {
   id: uid(),
   title: "",

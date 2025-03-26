@@ -7,7 +7,7 @@ const showDoneTasks = defineModel<boolean>("showDoneTasks");
 </script>
 
 <template>
-  <nav class="my-4 px-4">
+  <nav class="m-4">
     <Search />
     <SortByDate />
     <FilterByStatus v-model:showDoneTasks="showDoneTasks" />
