@@ -9,13 +9,13 @@ const description = defineModel<string>("description");
     type="text"
     size="large"
     placeholder="Title"
-    class="w-full border mb-4"
+    class="w-full border mb-4 xl:!text-4xl"
   />
   <Textarea
     v-model="description"
     size="large"
     placeholder="Description"
     rows="12"
-    class="w-full"
+    class="w-full max-h-3/4 xl:!text-3xl"
   />
 </template>

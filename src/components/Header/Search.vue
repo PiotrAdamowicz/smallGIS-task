@@ -5,12 +5,12 @@ const store = useTasksStore();
 </script>
 
 <template>
-  <div class="w-full px-2 pb-2">
+  <div class="w-full pb-4">
     <InputText
       type="text"
       placeholder="Search by title/description"
       v-model="store.searchQuery"
-      class="w-full"
+      class="w-full xl:!text-4xl"
     />
   </div>
 </template>

@@ -29,3 +29,9 @@ const visible = ref(false);
     </template>
   </Card>
 </template>
+<style scoped>
+:deep(.p-card-body) {
+  padding-left: 0;
+  padding-right: 0;
+}
+</style>

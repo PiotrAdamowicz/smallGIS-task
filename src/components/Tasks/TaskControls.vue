@@ -27,41 +27,51 @@ const toggleTask = () => {
 </script>
 
 <template>
-  <span class="grid grid-cols-4 grid-rows-2 gap-x-2 gap-y-1">
-    <span class="flex gap-2 transition col-span-3">
-      <Button
-        @click="toggleTask"
-        severity="secondary"
-        variant="text"
-        class="font-bold w-full flex-row !justify-start"
-      >
-        <span class="text-xl" :class="{ 'line-through': completed }">
+  <span class="grid grid-cols-6 grid-rows-1 gap-x-2 gap-y-1">
+    <Button
+      @click="toggleTask"
+      severity="secondary"
+      variant="text"
+      class="font-bold w-min-1/2 flex flex-col sm:flex-row !px-2 sm:!px-4 col-start-1 col-span-3"
+    >
+      <span class="flex col-span-2">
+        <span
+          class="text-xl md:text-2xl xl:text-4xl"
+          :class="{ 'line-through': completed }"
+        >
           {{ title }}
         </span>
-        <i v-if="visible" class="pi pi-check text-green-500 mx-2" />
-        <i v-else="visible" class="pi pi-pencil mx-2 text-green-500" />
-      </Button>
-    </span>
-
+        <i
+          v-if="visible"
+          class="pi pi-check text-green-500 mx-2 my-auto sm:!text-2xl"
+        />
+        <i
+          v-else="visible"
+          class="pi pi-pencil mx-2 text-green-500 my-auto sm:!text-xl md:text-2xl"
+        />
+      </span>
+      <p class="text-xs sm:text-md xl:text-2xl">
+        {{ formattedCreationDate }}
+      </p>
+    </Button>
     <Button
       @click="removeTask"
-      icon="pi pi-trash"
+      icon="pi pi-trash sm:!text-2xl"
       severity="danger"
-      class="font-bold col-start-4"
+      class="font-bold mx-4 col-start-4 sm:col-start-5"
       variant="text"
-    />
-    <ToggleSwitch
-      v-model="completed"
-      class="col-start-5 col-span-1 justify-self-end"
-    />
-    <p class="text-sm row-start-2 col-span-3 mx-2 px-1">
-      {{ formattedCreationDate }}
-    </p>
-    <TaskStatus :completed />
+    >
+      <!-- <i class=""></i> -->
+    </Button>
+    <div class="flex flex-col gap-2 mx-2 col-span-2 col-start-5 sm:col-start-6">
+      <ToggleSwitch v-model="completed" class="mx-auto" />
+      <TaskStatus :completed />
+    </div>
   </span>
 </template>
 <style scoped>
 .p-button {
   --p-button-padding-y: 0;
+  --p-button-padding-x: 0;
 }
 </style>
