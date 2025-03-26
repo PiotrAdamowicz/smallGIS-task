@@ -8,7 +8,14 @@ const store = useTasksStore();
 const tasks = computed(() => store.getFilteredTasks);
 </script>
 <template>
-  <main class="my-4 px-4 pb-2 flex flex-col gap-2 flex-grow">
+  <TransitionGroup
+    enterActiveClass="transition-opacity duration-300 transition-transform duration-300"
+    leaveActiveClass="transition-transform duration-300"
+    enterFromClass="opacity-0 scale-0 "
+    leaveToClass="-translate-x-full"
+    tag="main"
+    class="my-4 px-4 pb-2 flex flex-col gap-2 flex-grow transition-opacity"
+  >
     <Task v-for="task in tasks" :task :key="task.id" />
-  </main>
+  </TransitionGroup>
 </template>
