@@ -3,10 +3,12 @@ import { computed, ref } from "vue";
 import type { Task } from "../types/tasks";
 import { sortByDate } from "../helpers/sortTasks";
 import { tasksData } from "../utils/data";
+import { searchByQuery } from "../helpers/searchByQuery";
 
 export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref<Task[]>(tasksData);
   const sortAscending = ref<boolean>(false);
+  const searchQuery = ref<string>();
   const toggleSort = () => {
     sortAscending.value = !sortAscending.value;
   };
@@ -25,7 +27,10 @@ export const useTasksStore = defineStore("tasks", () => {
       } else {
         filteredTasks = tasks.value;
       }
-      return sortByDate(filteredTasks, sortAscending.value);
+      return sortByDate(
+        searchByQuery(filteredTasks, searchQuery.value),
+        sortAscending.value
+      );
     };
   });
 
@@ -44,6 +49,7 @@ export const useTasksStore = defineStore("tasks", () => {
     getNotDone,
     getAllTasks,
     getFilteredTasks,
-    sortAscending
+    sortAscending,
+    searchQuery
   };
 });
