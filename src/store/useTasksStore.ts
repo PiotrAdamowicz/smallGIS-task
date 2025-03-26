@@ -1,33 +1,39 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { computed, ref } from "vue";
 import type { Task } from "../types/tasks";
-import { CompletedTask } from "../types/enums";
+import { sortByDate } from "../helpers/sortTasks";
+import { tasksData } from "../utils/data";
+import { searchByQuery } from "../helpers/searchByQuery";
 
 export const useTasksStore = defineStore("tasks", () => {
-  const tasks = ref<Task[]>([
-    {
-      id: "1",
-      title: "Task 1",
-      created: new Date(),
-      description: "This is task 1",
-      completed: CompletedTask.notDone
-    },
-    {
-      id: "2",
-      title: "Task 2",
-      created: new Date(),
-      description: "This is task 2",
-      completed: CompletedTask.inProgress
-    },
-    {
-      id: "3",
-      title: "Task 3",
-      created: new Date(),
-      description: "This is task 3",
-      completed: CompletedTask.done
-    }
-  ]);
-  const sortTasks = () => {};
+  const tasks = ref<Task[]>(tasksData);
+  const sortAscending = ref<boolean>(false);
+  const searchQuery = ref<string>();
+  const toggleSort = () => {
+    sortAscending.value = !sortAscending.value;
+  };
+  const getAllTasks = computed(() =>
+    sortByDate(tasks.value, sortAscending.value)
+  );
+  const getNotDone = computed(() => {
+    const filteredTakss = tasks.value.filter((task) => !task.completed);
+    return sortByDate(filteredTakss, sortAscending.value);
+  });
+  const getFilteredTasks = computed(() => {
+    let filteredTasks = tasks.value;
+    return (showNotDone: boolean) => {
+      if (showNotDone) {
+        filteredTasks = tasks.value.filter((task) => !task.completed);
+      } else {
+        filteredTasks = tasks.value;
+      }
+      return sortByDate(
+        searchByQuery(filteredTasks, searchQuery.value),
+        sortAscending.value
+      );
+    };
+  });
+
   const addTask = (task: Task) => {
     tasks.value.push(task);
   };
@@ -35,5 +41,15 @@ export const useTasksStore = defineStore("tasks", () => {
     const index = tasks.value.findIndex((task) => task.id === id);
     tasks.value.splice(index, 1);
   };
-  return { tasks, addTask, sortTasks, removeTask };
+  return {
+    tasks,
+    addTask,
+    removeTask,
+    toggleSort,
+    getNotDone,
+    getAllTasks,
+    getFilteredTasks,
+    sortAscending,
+    searchQuery
+  };
 });

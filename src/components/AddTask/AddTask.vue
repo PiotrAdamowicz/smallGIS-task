@@ -1,7 +1,7 @@
 <script lang="ts" setup>
 import { ref } from "vue";
-import TaskForm from "./TaskForm.vue";
-import { CompletedTask } from "../../types/enums";
+import TaskForm from "../TaskForm.vue";
+import TaskStatus from "../TaskStatus.vue";
 import { uid } from "../../utils/uid";
 import type { Task } from "../../types/tasks";
 import { useTasksStore } from "../../store/useTasksStore";
@@ -14,10 +14,11 @@ const task = {
   title: "",
   created: new Date(),
   description: "",
-  completed: CompletedTask.notDone
+  completed: false
 };
 const initalState = ref<Task>(task);
 const addTask = () => {
+  initalState.value.created = new Date();
   store.addTask(initalState.value);
   visible.value = false;
 };
@@ -28,7 +29,7 @@ const addTask = () => {
     <Dialog
       v-model:visible="visible"
       :draggable="false"
-      position="right"
+      position="left"
       closeIcon="pi pi-arrow-left"
       modal
       :style="{ width: '100vw', height: '100vh' }"
@@ -37,13 +38,17 @@ const addTask = () => {
         v-model:title="initalState.title"
         v-model:description="initalState.description"
       />
+      <span class="inline-flex justify-between w-full px-2 py-4">
+        <TaskStatus :completed="initalState.completed" label="Status: " />
+        <ToggleSwitch v-model="initalState.completed" class="" />
+      </span>
       <template #footer>
         <Button
           @click="addTask"
           severity="success"
           label="Save"
           raised
-          class="font-bold my-2"
+          class="font-bold"
         />
       </template>
     </Dialog>

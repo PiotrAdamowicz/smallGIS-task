@@ -1,14 +1,13 @@
 import { setActivePinia, createPinia } from "pinia";
 import { useTasksStore } from "../src/store/useTasksStore";
 import { describe, beforeEach, it, expect } from "vitest";
-import { CompletedTask } from "../src/types/enums";
 
 const newTask = {
-  id: 4,
+  id: "4",
   title: "Task 4",
   created: new Date(),
   description: "This is task 4",
-  completed: CompletedTask.notDone
+  completed: false
 };
 
 describe("Use Tasks Store", () => {

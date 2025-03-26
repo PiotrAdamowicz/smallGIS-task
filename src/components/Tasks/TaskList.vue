@@ -1,13 +1,17 @@
 <script lang="ts" setup>
 import Task from "./Task.vue";
 import { useTasksStore } from "../../store/useTasksStore.ts";
+import { computed } from "vue";
 
+const { showNotDone } = defineProps<{
+  showNotDone: boolean;
+}>();
 const store = useTasksStore();
+
+const tasks = computed(() => store.getFilteredTasks(showNotDone));
 </script>
 <template>
-  <main class="px-4 pb-2">
-    <ul>
-      <Task v-for="task in store.tasks" :task :key="task.id" />
-    </ul>
+  <main class="my-4 px-4 pb-2 flex flex-col gap-2 flex-grow">
+    <Task v-for="task in tasks" :task :key="task.id" />
   </main>
 </template>

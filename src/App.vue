@@ -1,10 +1,19 @@
 <script setup lang="ts">
+import { ref } from "vue";
 import AddTask from "./components/AddTask/AddTask.vue";
+import Navigation from "./components/Navigation/Navigation.vue";
 import TaskList from "./components/Tasks/TaskList.vue";
+
+const showDoneTasks = ref<boolean>(false);
+const sortAscending = ref<boolean>(false);
 </script>
 
 <template>
-  <TaskList />
+  <Navigation
+    v-model:showDoneTasks="showDoneTasks"
+    v-model:sortAscending="sortAscending"
+  />
+  <TaskList :showNotDone="showDoneTasks" :sortAscending="sortAscending" />
   <AddTask />
-  <footer class="px-4 pb-4 fixed bottom-0 left-0 right-0">Made by me</footer>
+  <footer class="px-4 pb-4 bottom-0 left-0 right-0 mr-14">Made by me</footer>
 </template>
