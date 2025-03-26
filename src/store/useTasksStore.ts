@@ -9,16 +9,7 @@ export const useTasksStore = defineStore("tasks", () => {
   const tasks = ref<Task[]>(tasksData);
   const sortAscending = ref<boolean>(false);
   const searchQuery = ref<string>();
-  const toggleSort = () => {
-    sortAscending.value = !sortAscending.value;
-  };
-  const getAllTasks = computed(() =>
-    sortByDate(tasks.value, sortAscending.value)
-  );
-  const getNotDone = computed(() => {
-    const filteredTakss = tasks.value.filter((task) => !task.completed);
-    return sortByDate(filteredTakss, sortAscending.value);
-  });
+
   const getFilteredTasks = computed(() => {
     let filteredTasks = tasks.value;
     return (showNotDone: boolean) => {
@@ -33,7 +24,9 @@ export const useTasksStore = defineStore("tasks", () => {
       );
     };
   });
-
+  const toggleSort = () => {
+    sortAscending.value = !sortAscending.value;
+  };
   const addTask = (task: Task) => {
     tasks.value.push(task);
   };
@@ -46,8 +39,6 @@ export const useTasksStore = defineStore("tasks", () => {
     addTask,
     removeTask,
     toggleSort,
-    getNotDone,
-    getAllTasks,
     getFilteredTasks,
     sortAscending,
     searchQuery
