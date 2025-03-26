@@ -21,13 +21,11 @@ const visible = ref(false);
     </template>
 
     <template #content>
-      <div class="transition hover:bg-gray-600 cursor-pointer">
-        <TaskForm
-          v-if="visible"
-          v-model:title="task.title"
-          v-model:description="task.description"
-        />
-      </div>
+      <TaskForm
+        v-if="visible"
+        v-model:title="task.title"
+        v-model:description="task.description"
+      />
     </template>
   </Card>
 </template>
