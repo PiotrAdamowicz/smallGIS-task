@@ -2,6 +2,7 @@
 import FilterByStatus from "./FilterByStatus.vue";
 import Search from "./Search.vue";
 import SortByDate from "./SortByDate.vue";
+import DarkModeToggle from "./DarkModeToggle.vue";
 
 const showDoneTasks = defineModel<boolean>("showDoneTasks");
 </script>
@@ -11,5 +12,6 @@ const showDoneTasks = defineModel<boolean>("showDoneTasks");
     <Search />
     <SortByDate />
     <FilterByStatus v-model:showDoneTasks="showDoneTasks" />
+    <DarkModeToggle />
   </nav>
 </template>
