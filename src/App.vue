@@ -2,6 +2,7 @@
 import { ref } from "vue";
 import Header from "./components/Header/Header.vue";
 import TaskList from "./components/Tasks/TaskList.vue";
+import Footer from "./components/Footer.vue";
 
 const sortAscending = ref<boolean>(false);
 </script>
@@ -9,5 +10,5 @@ const sortAscending = ref<boolean>(false);
 <template>
   <Header v-model:sortAscending="sortAscending" />
   <TaskList :sortAscending="sortAscending" />
-  <footer class="px-4 pb-4 bottom-0 left-0 right-0 mr-14">Made by me</footer>
+  <Footer />
 </template>
